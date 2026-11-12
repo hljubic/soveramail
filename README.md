@@ -1,53 +1,112 @@
-# Sovera Mail
+<p align="center">
+  <img src="web/public/icon.svg" width="88" alt="Sovera Mail logo">
+</p>
 
-Open-source, local-first e-mail client with on-device AI. Your mailbox is copied
-into a database on your own computer, and every AI feature (drafts in your own
-style, summaries, categories, urgency, smart search) runs on a model server you
-run yourself ([Ollama](https://ollama.com)). Nothing is sent to a cloud AI.
+<h1 align="center">Sovera Mail</h1>
 
-| Layer      | Tech                                  | Where it runs     |
-| ---------- | ------------------------------------- | ----------------- |
-| UI         | Nuxt 4 · Vue 3.5 · Tailwind CSS 4     | Docker (`web`)    |
-| API        | Laravel 13 · PHP 8.5                  | Docker (`api`)    |
-| Storage    | MySQL 8.4                             | Docker (`mysql`)  |
-| Background | Laravel queue workers + scheduler     | Docker            |
-| Local AI   | Ollama (any chat + embedding model)   | your machine      |
+<p align="center">
+  <strong>The open-source mail client with a private AI that runs on your own computer.</strong><br>
+  Gmail and IMAP · drafts in your own voice · summaries · smart categories · smart search
+</p>
 
-You use Sovera Mail in your browser at <http://localhost:3000>.
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square" alt="License: AGPL-3.0"></a>
+  <img src="https://img.shields.io/badge/version-1.0.0-informational?style=flat-square" alt="Version 1.0.0">
+  <img src="https://img.shields.io/badge/AI-Ollama%20(local)-black?style=flat-square" alt="Local AI with Ollama">
+  <img src="https://img.shields.io/badge/runs%20with-Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Runs with Docker">
+  <img src="https://img.shields.io/badge/Laravel-13-FF2D20?style=flat-square&logo=laravel&logoColor=white" alt="Laravel 13">
+  <img src="https://img.shields.io/badge/Nuxt-4-00DC82?style=flat-square&logo=nuxt&logoColor=white" alt="Nuxt 4">
+</p>
 
-```
-.
-├── api/        Laravel API: OAuth, Gmail / IMAP sync, mailbox store, local AI
-├── web/        Nuxt SPA (the mail UI)
-├── docker/     PHP-FPM, nginx, MySQL and web images
-└── docker-compose.yml
-```
+<p align="center">
+  <img src="docs/screenshots/inbox.png" alt="Sovera Mail inbox: conversations sorted into categories, unread mail coloured by urgency" width="900">
+</p>
+
+<p align="center"><sub>Screenshots show a demo mailbox with made-up people and companies.</sub></p>
+
+---
+
+Sovera Mail copies your mailbox into a database **on your own machine** and gives it an AI
+assistant that also runs **on your own machine**, through [Ollama](https://ollama.com). It
+writes replies the way you write, summarizes long threads, sorts mail into your own categories
+and finds mail from a description in plain words. No cloud AI, no telemetry, no account with us.
+
+- [Why Sovera Mail](#why-sovera-mail)
+- [Features](#features)
+- [Quick start](#quick-start)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Development](#development)
+- [Security & privacy model](#security--privacy-model)
+- [How AI compose works](#how-ai-compose-works)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Why Sovera Mail
+
+- **Private by design.** Your mail and the AI that reads it never leave your computer (or a
+  server you own). The code is open, so you can check that.
+- **AI that sounds like you.** Drafts are built from how *you* write to *this* person, from a
+  style profile learned from your sent mail and from every correction you made to earlier drafts.
+- **You stay in control.** The AI runs only when you click **Process new**. Nothing is ever
+  sent without your confirmation, and nothing is ever deleted.
 
 ## Features
 
-- **Gmail** (Google OAuth) and **any IMAP/SMTP mailbox** (iCloud, Yahoo, Fastmail,
-  Zoho, GMX, Proton Mail Bridge, your own server).
-- Three-pane client: conversations, read/unread, star, labels and folders, reply,
-  reply all, forward, new mail, drafts, attachments with risk screening.
-- Keyword search (MySQL full-text, instant, deterministic) and optional **smart
-  search**: describe the mail in your own words, the local model turns it into
-  filters and the vector index ranks by topic.
-- **AI compose**: drafts in your own voice, built from your earlier mail to the same
-  person, related conversations, a style profile learned from everything you sent and
-  the corrections you made to earlier drafts.
-- **Categories and urgency**: your own categories (with descriptions the model
-  reads); every conversation gets one, every unread message an urgency
-  (high / medium / low).
-- **Summaries** of a conversation or a single message, one line per fact.
-- **Knowledge about you** (roles, projects, recurring questions and your usual answers,
-  cards for the people you write to most), editable on the *AI instructions* page.
-- Optional proofreading pass that fixes made-up words and wrong forms, useful for
-  small models in languages other than English.
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/screenshots/summary.png" alt="A conversation with its AI summary">
+      <p><strong>Summaries.</strong> One line per fact for a whole conversation or a single message:
+      what is asked of you, dates, amounts, names, decisions.</p>
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/screenshots/ai-compose.png" alt="An AI draft of a reply">
+      <p><strong>AI compose.</strong> A reply in your own voice, drafted from the thread, your
+      earlier mail to the same person and similar conversations in your mailbox.</p>
+    </td>
+  </tr>
+</table>
 
-Nothing runs on its own: the local AI processes new mail only when you click
-**Process new** in the top bar, and mail is only sent after you confirm it.
+- **Your mailboxes:** Gmail (Google OAuth) and any IMAP/SMTP account: iCloud, Yahoo, Fastmail,
+  Zoho, GMX, Proton Mail Bridge or your own server.
+- **A complete mail client:** conversations, read/unread, stars, labels and folders, reply,
+  reply all, forward, drafts, attachments with risk screening.
+- **Categories and urgency:** define your own categories in plain words; the local model files
+  every conversation and colours unread mail by urgency (high / medium / low). Your manual
+  choices always win and teach the model.
+- **Search two ways:** instant keyword search, or **smart search** that understands a
+  description like *"the mail about the planned server downtime"*.
+- **Knowledge about you:** your roles, projects, recurring questions and usual answers, and
+  cards for the people you write to most, all editable.
+- **Any language:** drafts follow the language of the mail (or the one you choose), and an
+  optional proofreading pass helps small models outside English.
 
-## 1. Google Cloud setup (for Gmail, once)
+## Quick start
+
+You need [Docker](https://docs.docker.com/get-docker/) and, for the AI features,
+[Ollama](https://ollama.com).
+
+```bash
+git clone https://github.com/hljubic/soveramail.ai.git
+cd soveramail.ai
+cp .env.example .env          # add your Google OAuth keys here if you use Gmail
+docker compose up -d --build
+```
+
+Open <http://localhost:3000>, add a mailbox under **Accounts**, then pick your models under
+**Local AI**:
+
+```bash
+ollama pull qwen3:8b      # chat model: drafts, categories, summaries
+ollama pull bge-m3        # embedding model: smart search
+```
+
+The sections below explain each step in detail.
+
+## Installation
+
+### 1. Google Cloud setup (Gmail only)
 
 Skip this if you only use IMAP accounts.
 
@@ -67,7 +126,7 @@ Skip this if you only use IMAP accounts.
 
 5. Copy the *Client ID* and *Client secret* into `.env` (next step).
 
-## 2. Run it (Docker)
+### 2. Run it
 
 Requirements: Docker (Docker Desktop on macOS / Windows).
 
@@ -94,7 +153,7 @@ The first start installs Composer and npm dependencies inside the containers and
 a couple of minutes. Your mail lives in the `mysql-data` volume; it survives restarts
 and `docker compose down` (only `make reset` deletes it, after asking).
 
-### Connecting Gmail
+#### Connecting Gmail
 
 1. **Accounts → Connect Gmail** opens Google's consent screen in a new tab.
 2. After consent Google redirects to the local API, which stores the encrypted tokens
@@ -103,7 +162,7 @@ and `docker compose down` (only `make reset` deletes it, after asking).
 3. New mail is fetched when the UI opens and then every 5 minutes while it stays open.
    **Accounts → Fetch N older messages** back-fills further into the past.
 
-### Connecting an IMAP/SMTP mailbox
+#### Connecting an IMAP/SMTP mailbox
 
 **Accounts → Add IMAP account.** Pick a preset or enter your own servers. Most
 providers require an *app password* instead of the login password. The API logs in to
@@ -116,7 +175,7 @@ attributes or name), `\Seen`/`\Flagged` map to unread/starred, threads come from
 Sending goes through SMTP and the copy is appended to Sent. The backend never deletes,
 moves or expunges anything.
 
-## 3. Set up the local AI (optional)
+### 3. Set up the local AI (optional)
 
 1. Install [Ollama](https://ollama.com) and pull a chat model and an embedding model, e.g.
 
@@ -127,7 +186,7 @@ moves or expunges anything.
 
    Bigger machines can use a bigger chat model. Prefer GGUF builds: the categories,
    urgency and summaries use Ollama's JSON-schema output.
-2. Open **Configure AI** in Sovera Mail, keep the server URL
+2. Open **Local AI** in the sidebar, keep the server URL
    (`http://host.docker.internal:11434`; `localhost` is rewritten to it because the API
    runs in Docker), press **Test connection**, pick the models and **Save**.
 3. Click **Process new** in the top bar. One pass sorts new mail into categories,
@@ -229,7 +288,7 @@ Guarantees built into the code (covered by tests):
 Your responsibility: the `mysql-data` volume holds your mail in clear text, so use
 full-disk encryption; change `DB_PASSWORD` from the default; keep `api/.env` private.
 
-## How AI compose builds its prompt
+## How AI compose works
 
 Everything runs locally against the mailbox copy in MySQL and your Ollama server. The
 knobs live on the **AI instructions** page.
@@ -250,6 +309,17 @@ For a **reply** the model receives:
 The index embeds each message's own text (quoted history removed), cut at paragraph or
 sentence ends into pieces of ~2000 characters, never attachment contents.
 
+## Contributing
+
+Bug reports, ideas and pull requests are welcome.
+
+- Open an [issue](https://github.com/hljubic/soveramail.ai/issues) for bugs and feature requests.
+- For code changes, read [AGENTS.md](AGENTS.md) first (architecture, invariants and the AI
+  pipeline), then run `make test` and `make lint` before you open a pull request.
+- Never use real mailbox data in tests or issues: use made-up fixtures.
+
 ## License
 
-[AGPL-3.0-or-later](LICENSE).
+Sovera Mail is free software under the [GNU Affero General Public License v3.0 or later](LICENSE).
+You may use, change and share it; if you distribute a changed version or offer it to others as a
+network service, you must publish your changes under the same license.

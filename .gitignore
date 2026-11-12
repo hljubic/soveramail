@@ -1,0 +1,24 @@
+.env
+.DS_Store
+Thumbs.db
+*.log
+
+# api (Laravel)
+api/vendor/
+api/node_modules/
+api/.env
+api/.env.backup
+api/storage/*.key
+api/storage/logs/*
+api/storage/framework/cache/data/*
+api/storage/framework/sessions/*
+api/storage/framework/views/*
+api/public/storage
+api/.phpunit.result.cache
+
+# web (Nuxt)
+web/node_modules/
+web/.nuxt/
+web/.output/
+web/.data/
+web/dist/

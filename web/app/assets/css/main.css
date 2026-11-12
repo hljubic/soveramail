@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Sovera palette */
+  --color-sovera-50: #eef4ff;
+  --color-sovera-100: #d9e6ff;
+  --color-sovera-200: #bcd2ff;
+  --color-sovera-300: #8eb4ff;
+  --color-sovera-400: #598aff;
+  --color-sovera-500: #3366ff;
+  --color-sovera-600: #1f47f5;
+  --color-sovera-700: #1735e1;
+  --color-sovera-800: #192db6;
+  --color-sovera-900: #1b2c8f;
+  --color-sovera-950: #141c57;
+}
+
+/*
+ * Mail-client surfaces (light by default, dark with .dark). Utilities such as
+ * bg-page, bg-surface, text-ink, text-ink-muted, bg-nav-active use these, so one
+ * class works in both themes.
+ */
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-row-read: var(--row-read);
+  --color-hover: var(--hover);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-nav-active: var(--nav-active);
+  --color-nav-active-ink: var(--nav-active-ink);
+  --color-compose: var(--compose);
+  --color-compose-ink: var(--compose-ink);
+  --color-search: var(--search);
+  --color-search-focus: var(--search-focus);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-chip: var(--chip);
+}
+
+:root {
+  color-scheme: light;
+  --page: #f6f8fc;
+  --surface: #ffffff;
+  --surface-2: #f8fafd;
+  --row-read: #f2f6fc;
+  --hover: #eef2f8;
+  --line: #e3e7ed;
+  --ink: #1f1f1f;
+  --ink-muted: #444746;
+  --ink-faint: #747775;
+  --nav-active: #d3e3fd;
+  --nav-active-ink: #041e49;
+  --compose: #c2e7ff;
+  --compose-ink: #001d35;
+  --search: #eaf1fb;
+  --search-focus: #ffffff;
+  --primary: #0b57d0;
+  --on-primary: #ffffff;
+  --chip: #e8eaed;
+}
+
+.dark {
+  color-scheme: dark;
+  --page: #111214;
+  --surface: #1b1c1f;
+  --surface-2: #202125;
+  --row-read: #1b1c1f;
+  --hover: #26282c;
+  --line: #2e3035;
+  --ink: #e3e3e3;
+  --ink-muted: #c4c7c5;
+  --ink-faint: #8e918f;
+  --nav-active: #2f3b52;
+  --nav-active-ink: #d3e3fd;
+  --compose: #2b3a4f;
+  --compose-ink: #e3e3e3;
+  --search: #26282c;
+  --search-focus: #2e3035;
+  --primary: #a8c7fa;
+  --on-primary: #062e6f;
+  --chip: #303236;
+}
+
+html, body, #__nuxt {
+  height: 100%;
+}
+
+body {
+  @apply bg-page text-ink antialiased;
+  font-size: 14px;
+  overscroll-behavior: none;
+}
+
+/* Subtle scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(0 0 0 / 0.2) transparent;
+}
+.dark * {
+  scrollbar-color: rgb(255 255 255 / 0.2) transparent;
+}

@@ -4,7 +4,7 @@ Thanks for helping. Bug reports, ideas, documentation and code are all welcome.
 
 ## Reporting bugs and ideas
 
-- Search the [issues](https://github.com/hljubic/soveramail.ai/issues) first, then open a new one.
+- Search the [issues](https://github.com/hljubic/soveramail/issues) first, then open a new one.
 - For bugs, include what you did, what you expected, what happened, your OS, and (for AI
   problems) the Ollama version and model name.
 - **Never paste real e-mails, addresses, tokens or logs with personal data.** Replace them with

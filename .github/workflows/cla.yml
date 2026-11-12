@@ -25,10 +25,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           path-to-signatures: signatures/cla.json
-          path-to-document: https://github.com/hljubic/soveramail.ai/blob/main/CLA.md
+          path-to-document: https://github.com/hljubic/soveramail/blob/main/CLA.md
           branch: main
           allowlist: hljubic,dependabot[bot],bot*
           create-file-commit-message: 'Create the CLA signatures file'
           signed-commit-message: '$contributorName signed the CLA in $owner/$repo#$pullRequestNo'
-          custom-notsigned-prcomment: 'Thank you for your contribution! Before we can merge it, please sign the [Contributor License Agreement](https://github.com/hljubic/soveramail.ai/blob/main/CLA.md) (you keep your copyright; it lets Sovera Mail stay AGPL and also be offered under a commercial license). Sign by replying to this pull request with the sentence below. You only do this once.'
+          custom-notsigned-prcomment: 'Thank you for your contribution! Before we can merge it, please sign the [Contributor License Agreement](https://github.com/hljubic/soveramail/blob/main/CLA.md) (you keep your copyright; it lets Sovera Mail stay AGPL and also be offered under a commercial license). Sign by replying to this pull request with the sentence below. You only do this once.'
           custom-allsigned-prcomment: 'All contributors have signed the CLA. Thank you!'

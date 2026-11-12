@@ -88,8 +88,8 @@ You need [Docker](https://docs.docker.com/get-docker/) and, for the AI features,
 [Ollama](https://ollama.com).
 
 ```bash
-git clone https://github.com/hljubic/soveramail.ai.git
-cd soveramail.ai
+git clone https://github.com/hljubic/soveramail.git
+cd soveramail
 cp .env.example .env          # add your Google OAuth keys here if you use Gmail
 docker compose up -d --build
 ```
@@ -313,7 +313,7 @@ sentence ends into pieces of ~2000 characters, never attachment contents.
 
 Bug reports, ideas and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-- Open an [issue](https://github.com/hljubic/soveramail.ai/issues) for bugs and feature requests.
+- Open an [issue](https://github.com/hljubic/soveramail/issues) for bugs and feature requests.
 - For code changes, read [AGENTS.md](AGENTS.md) first (architecture, invariants and the AI
   pipeline), then run `make test` and `make lint` before you open a pull request.
 - Never use real mailbox data in tests or issues: use made-up fixtures.
@@ -330,5 +330,5 @@ Sovera Mail is dual-licensed.
   as a network service, you must publish your changes under the same license.
 - **Commercial license:** for companies that want to build Sovera Mail into a closed product or
   run a changed version without publishing their changes, a commercial license is available.
-  [Open an issue titled "Commercial license"](https://github.com/hljubic/soveramail.ai/issues/new?title=Commercial%20license)
+  [Open an issue titled "Commercial license"](https://github.com/hljubic/soveramail/issues/new?title=Commercial%20license)
   and we will continue the conversation privately.

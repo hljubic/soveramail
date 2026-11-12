@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square" alt="License: AGPL-3.0"></a>
+  <a href="#license"><img src="https://img.shields.io/badge/license-AGPL--3.0%20%2F%20commercial-blue?style=flat-square" alt="License: AGPL-3.0 or commercial"></a>
   <img src="https://img.shields.io/badge/version-1.0.0-informational?style=flat-square" alt="Version 1.0.0">
   <img src="https://img.shields.io/badge/AI-Ollama%20(local)-black?style=flat-square" alt="Local AI with Ollama">
   <img src="https://img.shields.io/badge/runs%20with-Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Runs with Docker">
@@ -311,15 +311,24 @@ sentence ends into pieces of ~2000 characters, never attachment contents.
 
 ## Contributing
 
-Bug reports, ideas and pull requests are welcome.
+Bug reports, ideas and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 - Open an [issue](https://github.com/hljubic/soveramail.ai/issues) for bugs and feature requests.
 - For code changes, read [AGENTS.md](AGENTS.md) first (architecture, invariants and the AI
   pipeline), then run `make test` and `make lint` before you open a pull request.
 - Never use real mailbox data in tests or issues: use made-up fixtures.
+- On your first pull request you sign the [Contributor License Agreement](CLA.md) with one
+  comment. You keep the copyright to your work; the CLA lets Sovera Mail also be offered under
+  a commercial license.
 
 ## License
 
-Sovera Mail is free software under the [GNU Affero General Public License v3.0 or later](LICENSE).
-You may use, change and share it; if you distribute a changed version or offer it to others as a
-network service, you must publish your changes under the same license.
+Sovera Mail is dual-licensed.
+
+- **Open source:** free software under the [GNU Affero General Public License v3.0 or later](LICENSE).
+  You may use, change and share it; if you distribute a changed version or offer it to others
+  as a network service, you must publish your changes under the same license.
+- **Commercial license:** for companies that want to build Sovera Mail into a closed product or
+  run a changed version without publishing their changes, a commercial license is available.
+  [Open an issue titled "Commercial license"](https://github.com/hljubic/soveramail.ai/issues/new?title=Commercial%20license)
+  and we will continue the conversation privately.
